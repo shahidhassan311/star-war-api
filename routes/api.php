@@ -20,20 +20,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
 Route::group([
-
     'middleware' => 'api',
     'prefix' => 'auth'
-
 ], function ($router) {
-
     Route::post('login', [AuthController::class, 'login'])->name('login');
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('register', [AuthController::class, 'register']);
-
+    Route::post('register', [AuthController::class, 'register'])->name('register');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::get('/movie-list', [MovieController::class, 'index'])->name('movies.index');
+Route::middleware([
+    'api',
+    'jwt.auth'
+])->group(function () {
+    Route::get('movie-list', [MovieController::class, 'index'])->name('movies');
+});
+
+
 
