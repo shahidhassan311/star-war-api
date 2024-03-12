@@ -24,7 +24,7 @@ class AuthController extends Controller
         $validatedData = $request->validated();
 
         if (!$token = JWTAuth::attempt($validatedData)) {
-            return APIResponse::error("Unauthorized", null, 401);
+            return APIResponse::error("Unauthorized", [], 401);
         }
 
         if ($token instanceof \Exception) {

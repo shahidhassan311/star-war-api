@@ -14,12 +14,12 @@ class APIResponse
      * @param array $data
      * @return JsonResponse
      */
-    public static function success(string $msg = '', array $data = []): JsonResponse
+    public static function success(string $msg = '', array $data = [], int $status = 200): JsonResponse
     {
         return response()->json([
             'message' => $msg,
             'data' => $data,
-        ]);
+        ],$status);
     }
 
     /**
