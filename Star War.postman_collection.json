@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "4df1cb7a-430b-46ac-9c5b-f4176b40fda2",
+		"name": "Star War",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21838834"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/auth/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Star War API",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/star-war",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"star-war"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "external_id",
+							"value": "1011934",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "Kung Fu Panda 78",
+							"type": "text"
+						},
+						{
+							"key": "overview",
+							"value": "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past.",
+							"type": "text"
+						},
+						{
+							"key": "popularity",
+							"value": "4028.17",
+							"type": "text"
+						},
+						{
+							"key": "vote_average",
+							"value": "6.93",
+							"type": "text"
+						},
+						{
+							"key": "vote_count",
+							"value": "388",
+							"type": "text"
+						},
+						{
+							"key": "original_language",
+							"value": "en",
+							"type": "text"
+						},
+						{
+							"key": "poster_path",
+							"value": "/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg",
+							"type": "text"
+						},
+						{
+							"key": "backdrop_path",
+							"value": "/1XDDXPXGiI8id7MrUxK36ke7gkX.jpg",
+							"type": "text"
+						},
+						{
+							"key": "adult",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "video",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "release_date",
+							"value": "2024-03-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/movie-update/44",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"movie-update",
+						"44"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie Store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "Kung Fu Panda 78",
+							"type": "text"
+						},
+						{
+							"key": "overview",
+							"value": "Po is gearing up to become the spiritual leader of his Valley of Peace, but also needs someone to take his place as Dragon Warrior. As such, he will train a new kung fu practitioner for the spot and will encounter a villain called the Chameleon who conjures villains from the past.",
+							"type": "text"
+						},
+						{
+							"key": "popularity",
+							"value": "4028.17",
+							"type": "text"
+						},
+						{
+							"key": "vote_average",
+							"value": "6.93",
+							"type": "text"
+						},
+						{
+							"key": "vote_count",
+							"value": "388",
+							"type": "text"
+						},
+						{
+							"key": "original_language",
+							"value": "en",
+							"type": "text"
+						},
+						{
+							"key": "poster_path",
+							"value": "/kDp1vUBnMpe8ak4rjgl3cLELqjU.jpg",
+							"type": "text"
+						},
+						{
+							"key": "backdrop_path",
+							"value": "/1XDDXPXGiI8id7MrUxK36ke7gkX.jpg",
+							"type": "text"
+						},
+						{
+							"key": "adult",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "video",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "release_date",
+							"value": "2024-03-02",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/movie-store",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"movie-store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/movie-delete/26",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"movie-delete",
+						"26"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie Filter",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/movie-filter?title=Argylle",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"movie-filter"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "Argylle"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie Get",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/movie/43",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"movie",
+						"43"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000"
+		},
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MTE3NDc4NTgsImV4cCI6MTcxMTc1MTQ1OCwibmJmIjoxNzExNzQ3ODU4LCJqdGkiOiIyQnlWWklhcUFlTzlSa3o5Iiwic3ViIjoiMTIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.jS7c3vXlf9TLcvX13hxep4qE5gXuOsDdhasRdB6vCyQ",
+			"type": "string"
+		}
+	]
+}

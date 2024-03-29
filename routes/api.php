@@ -33,7 +33,13 @@ Route::middleware([
     'api',
     'jwt.auth'
 ])->group(function () {
-    Route::get('movie-list', [MovieController::class, 'index'])->name('movies');
+    Route::get('star-war', [MovieController::class, 'index'])->name('movie.star.war');
+    Route::get('movie/{id}', [MovieController::class, 'getMovie'])->name('movie');
+    Route::post('movie-store', [MovieController::class, 'store'])->name('movie.store');
+    Route::put('movie-update/{id}', [MovieController::class, 'update'])->name('movie.update');
+    Route::delete('movie-delete/{id}', [MovieController::class, 'destroy'])->name('movie.destroy');
+    Route::get('movie-filter', [MovieController::class, 'filter'])->name('movie.filter');
+
 });
 
 

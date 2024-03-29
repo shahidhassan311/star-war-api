@@ -54,4 +54,9 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function movies()
+    {
+        return $this->hasMany(Movie::class);
+    }
+
 }
