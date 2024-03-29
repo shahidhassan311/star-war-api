@@ -45,6 +45,30 @@ class MovieService
         }
     }
 
+    private function processChunk($moviesChunk)
+    {
+        foreach ($moviesChunk as $movieData) {
+            $existingMovie = $this->movieModel->where('external_id', $movieData['id'])->first();
+
+            if (!$existingMovie) {
+                $user = auth()->user();
+                $user->movies()->create([
+                    'external_id' => $movieData['id'],
+                    'title' => $movieData['title'],
+                    'overview' => $movieData['overview'],
+                    'release_date' => $movieData['release_date'],
+                    'popularity' => $movieData['popularity'],
+                    'vote_average' => $movieData['vote_average'],
+                    'vote_count' => $movieData['vote_count'],
+                    'original_language' => $movieData['original_language'],
+                    'poster_path' => $movieData['poster_path'],
+                    'backdrop_path' => $movieData['backdrop_path'],
+                    'adult' => $movieData['adult'],
+                    'video' => $movieData['video'],
+                ]);
+            }
+        }
+    }
 
     public function findMovie($id)
     {
@@ -71,31 +95,6 @@ class MovieService
             return true;
         } catch (\Exception $e) {
             return $e;
-        }
-    }
-
-    private function processChunk($moviesChunk)
-    {
-        foreach ($moviesChunk as $movieData) {
-            $existingMovie = $this->movieModel->where('external_id', $movieData['id'])->first();
-
-            if (!$existingMovie) {
-                $user = auth()->user();
-                $user->movies()->create([
-                    'external_id' => $movieData['id'],
-                    'title' => $movieData['title'],
-                    'overview' => $movieData['overview'],
-                    'release_date' => $movieData['release_date'],
-                    'popularity' => $movieData['popularity'],
-                    'vote_average' => $movieData['vote_average'],
-                    'vote_count' => $movieData['vote_count'],
-                    'original_language' => $movieData['original_language'],
-                    'poster_path' => $movieData['poster_path'],
-                    'backdrop_path' => $movieData['backdrop_path'],
-                    'adult' => $movieData['adult'],
-                    'video' => $movieData['video'],
-                ]);
-            }
         }
     }
 
