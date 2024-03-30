@@ -48,7 +48,6 @@ class MovieController extends Controller
         $validatedData = $request->validated();
 
         $validatedData['external_id'] = mt_rand(100000, 999999);
-        $validatedData['user_id'] = auth()->id();
 
         $movie = $this->movieService->store($validatedData);
 

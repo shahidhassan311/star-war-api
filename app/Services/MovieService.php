@@ -44,6 +44,20 @@ class MovieService
             return $e;
         }
     }
+    public function storeMovies($moviesData)
+    {
+        try {
+            $chunkedMovies = array_chunk($moviesData, 50);
+
+            foreach ($chunkedMovies as $chunk) {
+                $this->processChunk($chunk);
+            }
+
+            return true;
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
 
     private function processChunk($moviesChunk)
     {
@@ -78,21 +92,6 @@ class MovieService
             $movie =  $this->movieModel->where('user_id', $user->id)->findOrFail($id);
 
             return $movie;
-        } catch (\Exception $e) {
-            return $e;
-        }
-    }
-
-    public function storeMovies($moviesData)
-    {
-        try {
-            $chunkedMovies = array_chunk($moviesData, 50);
-
-            foreach ($chunkedMovies as $chunk) {
-                $this->processChunk($chunk);
-            }
-
-            return true;
         } catch (\Exception $e) {
             return $e;
         }

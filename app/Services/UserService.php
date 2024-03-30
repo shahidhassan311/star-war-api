@@ -9,10 +9,27 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserService
 {
+    private static $instance;
+
+    private $userModel;
+
+    public function __construct()
+    {
+        $this->userModel = new User();
+    }
+
+    public static function getInstance()
+    {
+        if (!self::$instance) {
+            self::$instance = new UserService();
+        }
+        return self::$instance;
+    }
+
     public function store($validatedData)
     {
         try {
-            $user = User::create([
+            $user = $this->userModel->create([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
                 'password' => bcrypt($validatedData['password']),
